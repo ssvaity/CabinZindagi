@@ -129,12 +129,12 @@ export function ServicesGrid() {
       {/* Section 3 — What We Offer (cards + spec table + layout) */}
       <section className="border-t border-black/5 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-40 sm:py-56">
-          <h2 className="text-center text-3xl font-bold text-brandtext sm:text-4xl">
-            {p.offerHeading}
-          </h2>
+    <h2 className="text-center text-3xl font-bold text-brandtext sm:text-4xl">
+      {p.offerHeading}
+    </h2>
 
           {/* Right: spec table */}
-          <div className="overflow-x-auto lg:col-span-2">
+          <div className="mt-14 overflow-x-auto lg:col-span-2">
             <div className="min-w-[560px]">
               <div className="grid grid-cols-4 gap-6 pb-3">
                 {p.tableHeaders.map((h, i) => (
