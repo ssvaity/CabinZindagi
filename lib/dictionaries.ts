@@ -167,6 +167,45 @@ export const dictionaries = {
         "Ground-floor showers & toilets",
         "Built for factories & logistics parks",
       ],
+      offerHeading: "What We Offer",
+      offerCards: [
+        {
+          title: "Manufacturing",
+          body: "Factory-built porta cabin dormitory units using standard modular sizes, insulation, structural framing, stair access, sleeping layouts, plumbing-ready wet areas and electrical integration.",
+          points: [
+            "20ft and 40ft standard modules",
+            "Stacked same-size container configuration",
+            "Custom internal planning as per site traffic",
+          ],
+        },
+        {
+          title: "Supply & deployment",
+          body: "End-to-end support from concept sizing to dispatch, placement and site deployment for factories, fleet yards, industrial estates, warehouses and transport terminals.",
+          points: [
+            "Installation-ready modular blocks",
+            "Coordination for utility connections",
+            "Multi-site rollout possible",
+          ],
+        },
+        {
+          title: "Driver-centric planning",
+          body: "The layout is meant for short-stay resting, wash-up, shift change and waiting time between loading and dispatch cycles.",
+          points: [
+            "Separate wet and dry usage zones",
+            "High-density but structured sleeping plan",
+            "Suitable for continuous site operations",
+          ],
+        },
+      ],
+      tableHeaders: ["Model", "Structure", "Capacity", "Ideal deployment"],
+      tableRows: [
+        ["20ft Driver Dorm", "2 stacked 20ft porta cabins", "12 beds", "Medium truck inflow factories, warehouses, yards"],
+        ["40ft Driver Dorm", "2 stacked 40ft porta cabins", "24 beds", "Large industrial plants, logistics parks, transport hubs"],
+        ["Custom cluster layout", "Multiple stacked modules", "As per requirement", "Multi-bay sites, high truck wait time locations"],
+      ],
+      layoutCaption: "Standard 20ft module layout",
+      bedsCaption: "First-floor sleeping bays",
+      showerCaption: "Ground-floor wash & toilet block",
     },
     contact: {
       heading: "Contact Us",
@@ -370,6 +409,45 @@ export const dictionaries = {
         "भूतल पर शॉवर और शौचालय",
         "कारखानों और लॉजिस्टिक्स पार्कों के लिए",
       ],
+      offerHeading: "हम क्या प्रदान करते हैं",
+      offerCards: [
+        {
+          title: "निर्माण",
+          body: "मानक मॉड्यूलर आकार, इन्सुलेशन, संरचनात्मक ढाँचा, सीढ़ी पहुँच, स्लीपिंग लेआउट, प्लंबिंग-रेडी वेट एरिया और विद्युत एकीकरण के साथ कारखाने में निर्मित पोर्टा केबिन डॉर्मिटरी यूनिट।",
+          points: [
+            "20 फुट और 40 फुट मानक मॉड्यूल",
+            "समान-आकार के कंटेनर का स्टैक्ड विन्यास",
+            "साइट ट्रैफ़िक के अनुसार कस्टम आंतरिक योजना",
+          ],
+        },
+        {
+          title: "आपूर्ति और तैनाती",
+          body: "कारखानों, फ्लीट यार्ड, औद्योगिक क्षेत्रों, गोदामों और परिवहन टर्मिनलों के लिए कॉन्सेप्ट साइज़िंग से डिस्पैच, प्लेसमेंट और साइट तैनाती तक एंड-टू-एंड सहायता।",
+          points: [
+            "इंस्टॉलेशन-रेडी मॉड्यूलर ब्लॉक",
+            "यूटिलिटी कनेक्शन के लिए समन्वय",
+            "मल्टी-साइट रोलआउट संभव",
+          ],
+        },
+        {
+          title: "ड्राइवर-केंद्रित योजना",
+          body: "यह लेआउट लोडिंग और डिस्पैच चक्रों के बीच अल्प-प्रवास विश्राम, धुलाई, शिफ्ट परिवर्तन और प्रतीक्षा समय के लिए बनाया गया है।",
+          points: [
+            "अलग गीले और सूखे उपयोग क्षेत्र",
+            "उच्च-घनत्व पर संरचित स्लीपिंग प्लान",
+            "निरंतर साइट संचालन के लिए उपयुक्त",
+          ],
+        },
+      ],
+      tableHeaders: ["मॉडल", "संरचना", "क्षमता", "आदर्श तैनाती"],
+      tableRows: [
+        ["20 फुट ड्राइवर डॉर्म", "2 स्टैक्ड 20 फुट पोर्टा केबिन", "12 बेड", "मध्यम ट्रक आवक कारखाने, गोदाम, यार्ड"],
+        ["40 फुट ड्राइवर डॉर्म", "2 स्टैक्ड 40 फुट पोर्टा केबिन", "24 बेड", "बड़े औद्योगिक संयंत्र, लॉजिस्टिक्स पार्क, परिवहन हब"],
+        ["कस्टम क्लस्टर लेआउट", "कई स्टैक्ड मॉड्यूल", "आवश्यकता के अनुसार", "मल्टी-बे साइट, उच्च ट्रक प्रतीक्षा समय वाले स्थान"],
+      ],
+      layoutCaption: "मानक 20 फुट मॉड्यूल लेआउट",
+      bedsCaption: "पहली मंज़िल स्लीपिंग बे",
+      showerCaption: "भूतल वॉश और शौचालय ब्लॉक",
     },
     contact: {
       heading: "संपर्क करें",

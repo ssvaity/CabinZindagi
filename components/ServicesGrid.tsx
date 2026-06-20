@@ -5,10 +5,9 @@ import { useLanguage } from "@/lib/language-context";
 import { products } from "@/data/products";
 
 const dormitoryImages = [
-  { src: "/products/dormitory-night.png", span: "col-span-2 h-56", fit: "object-cover" },
-  { src: "/products/dormitory.png", span: "h-40", fit: "object-cover" },
-  { src: "/products/dormitory-building.png", span: "h-40", fit: "object-cover" },
-  { src: "/products/dormitory-floorplan.png", span: "col-span-2 h-56", fit: "object-contain bg-white p-2" },
+  { src: "/products/dormitory-building.png", span: "col-span-2 h-72", fit: "object-cover" },
+  { src: "/products/dormitory-night.png", span: "h-52", fit: "object-cover" },
+  { src: "/products/dormitory.png", span: "h-52", fit: "object-cover" },
 ];
 
 const ctaClass =
@@ -21,7 +20,7 @@ export function ServicesGrid() {
   return (
     <>
       {/* Section 1 — Products (pricing-style cards) */}
-      <section className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 py-32 sm:py-40">
+      <section className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 py-40 sm:py-56">
         <div className="mb-14 text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">{p.driversHeading}</h2>
           <p className="mt-3 opacity-70">{p.driversSub}</p>
@@ -89,7 +88,7 @@ export function ServicesGrid() {
 
       {/* Section 2 — Driver Dormitory showcase */}
       <section className="border-t border-black/5 dark:border-white/10">
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-4 py-32 sm:py-40">
+        <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-4 py-40 sm:py-56">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Text */}
             <div>
@@ -114,7 +113,7 @@ export function ServicesGrid() {
             </div>
 
             {/* Image gallery */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-5 sm:gap-6">
               {dormitoryImages.map((img) => (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
@@ -125,6 +124,146 @@ export function ServicesGrid() {
                 />
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3 — What We Offer (cards + spec table + layout) */}
+      <section className="border-t border-black/5 dark:border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-40 sm:py-56">
+          <h2 className="text-center text-3xl font-bold text-brandtext sm:text-4xl">
+            {p.offerHeading}
+          </h2>
+
+          {/* Vertical cards (left) + spec table (right) */}
+          <div className="mt-14 grid gap-10 lg:grid-cols-3 lg:items-start">
+            {/* Left: the three blocks, stacked vertically */}
+            <div className="flex flex-col gap-6">
+              {p.offerCards.map((card) => (
+                <div
+                  key={card.title}
+                  className="rounded-2xl border border-black/10 p-7 dark:border-white/15"
+                >
+                  <h3 className="text-xl font-bold text-brandtext">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed opacity-80">
+                    {card.body}
+                  </p>
+                  <ul className="mt-4 space-y-2">
+                    {card.points.map((pt) => (
+                      <li key={pt} className="flex gap-2 text-sm opacity-80">
+                        <span className="text-brandtext">•</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* Right: spec table */}
+            <div className="overflow-x-auto lg:col-span-2">
+              <div className="min-w-[560px]">
+                <div className="grid grid-cols-4 gap-6 pb-3">
+                  {p.tableHeaders.map((h, i) => (
+                    <div
+                      key={h}
+                      className={`text-lg font-bold text-brandtext sm:text-xl ${
+                        i > 0
+                          ? "border-l border-dashed border-black/25 pl-6 dark:border-white/25"
+                          : ""
+                      }`}
+                    >
+                      {h}
+                    </div>
+                  ))}
+                </div>
+                {p.tableRows.map((row, ri) => (
+                  <div
+                    key={ri}
+                    className="grid grid-cols-4 gap-6 border-t border-black/5 py-5 text-sm dark:border-white/10"
+                  >
+                    {row.map((cell, ci) => (
+                      <div
+                        key={ci}
+                        className={
+                          ci > 0
+                            ? "border-l border-dashed border-black/15 pl-6 opacity-80 dark:border-white/15"
+                            : "font-medium"
+                        }
+                      >
+                        {cell}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Exterior photos below the table — one large + two below */}
+          <div className="mt-16 grid grid-cols-2 gap-5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/products/dormitory-building.png"
+              alt={p.dormitoryHeading}
+              className="col-span-2 h-80 w-full rounded-2xl border border-black/5 object-cover dark:border-white/10"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/products/dormitory-night.png"
+              alt={p.dormitoryHeading}
+              className="h-56 w-full rounded-2xl border border-black/5 object-cover dark:border-white/10"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/products/dormitory.png"
+              alt={p.dormitoryHeading}
+              className="h-56 w-full rounded-2xl border border-black/5 object-cover dark:border-white/10"
+            />
+          </div>
+
+          {/* Interior photos + layout */}
+          <div className="mt-16">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <figure>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/products/dormitory-beds.png"
+                  alt={p.bedsCaption}
+                  className="h-64 w-full rounded-xl border border-black/5 object-cover dark:border-white/10"
+                />
+                <figcaption className="mt-2 text-center text-sm opacity-60">
+                  {p.bedsCaption}
+                </figcaption>
+              </figure>
+              <figure>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/products/dormitory-showers.png"
+                  alt={p.showerCaption}
+                  className="h-64 w-full rounded-xl border border-black/5 object-cover dark:border-white/10"
+                />
+                <figcaption className="mt-2 text-center text-sm opacity-60">
+                  {p.showerCaption}
+                </figcaption>
+              </figure>
+            </div>
+
+            <figure className="mt-6">
+              <div className="mx-auto max-w-3xl rounded-2xl border border-black/5 bg-white p-4 dark:border-white/10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/products/dormitory-floorplan.png"
+                  alt={p.layoutCaption}
+                  className="mx-auto max-h-[440px] w-auto object-contain"
+                />
+              </div>
+              <figcaption className="mt-3 text-center text-sm opacity-60">
+                {p.layoutCaption}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
