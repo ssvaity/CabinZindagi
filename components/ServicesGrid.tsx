@@ -32,11 +32,10 @@ export function ServicesGrid() {
             return (
               <div
                 key={prod.id}
-                className={`relative flex flex-col rounded-3xl border p-8 transition ${
-                  popular
-                    ? "border-brand bg-brand/[0.05] shadow-xl lg:-mt-4 lg:pb-12"
-                    : "border-black/10 bg-black/[0.02] hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03]"
-                }`}
+                className={`relative flex flex-col rounded-3xl border p-8 transition ${popular
+                  ? "border-brand bg-brand/[0.05] shadow-xl lg:-mt-4 lg:pb-12"
+                  : "border-black/10 bg-black/[0.02] hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03]"
+                  }`}
               >
                 {popular && (
                   <span className="absolute right-6 top-6 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-[#1f2a33]">
@@ -61,11 +60,10 @@ export function ServicesGrid() {
 
                 <Link
                   href="/contact"
-                  className={`mt-6 rounded-lg px-6 py-3 text-center font-semibold transition ${
-                    popular
-                      ? "bg-brand text-[#1f2a33] hover:bg-brand-light"
-                      : "border border-black/15 hover:border-brand dark:border-white/20"
-                  }`}
+                  className={`mt-6 rounded-lg px-6 py-3 text-center font-semibold transition ${popular
+                    ? "bg-brand text-[#1f2a33] hover:bg-brand-light"
+                    : "border border-black/15 hover:border-brand dark:border-white/20"
+                    }`}
                 >
                   {p.buyLabel}
                 </Link>
@@ -135,97 +133,74 @@ export function ServicesGrid() {
             {p.offerHeading}
           </h2>
 
-          {/* Vertical cards (left) + spec table (right) */}
-          <div className="mt-14 grid gap-10 lg:grid-cols-3 lg:items-start">
-            {/* Left: the three blocks, stacked vertically */}
-            <div className="flex flex-col gap-6">
-              {p.offerCards.map((card) => (
-                <div
-                  key={card.title}
-                  className="rounded-2xl border border-black/10 p-7 dark:border-white/15"
-                >
-                  <h3 className="text-xl font-bold text-brandtext">
-                    {card.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed opacity-80">
-                    {card.body}
-                  </p>
-                  <ul className="mt-4 space-y-2">
-                    {card.points.map((pt) => (
-                      <li key={pt} className="flex gap-2 text-sm opacity-80">
-                        <span className="text-brandtext">•</span>
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            {/* Right: spec table */}
-            <div className="overflow-x-auto lg:col-span-2">
-              <div className="min-w-[560px]">
-                <div className="grid grid-cols-4 gap-6 pb-3">
-                  {p.tableHeaders.map((h, i) => (
-                    <div
-                      key={h}
-                      className={`text-lg font-bold text-brandtext sm:text-xl ${
-                        i > 0
-                          ? "border-l border-dashed border-black/25 pl-6 dark:border-white/25"
-                          : ""
-                      }`}
-                    >
-                      {h}
-                    </div>
-                  ))}
-                </div>
-                {p.tableRows.map((row, ri) => (
+          {/* Right: spec table */}
+          <div className="overflow-x-auto lg:col-span-2">
+            <div className="min-w-[560px]">
+              <div className="grid grid-cols-4 gap-6 pb-3">
+                {p.tableHeaders.map((h, i) => (
                   <div
-                    key={ri}
-                    className="grid grid-cols-4 gap-6 border-t border-black/5 py-5 text-sm dark:border-white/10"
+                    key={h}
+                    className={`text-lg font-bold text-brandtext sm:text-xl ${i > 0
+                      ? "border-l border-dashed border-black/25 pl-6 dark:border-white/25"
+                      : ""
+                      }`}
                   >
-                    {row.map((cell, ci) => (
-                      <div
-                        key={ci}
-                        className={
-                          ci > 0
-                            ? "border-l border-dashed border-black/15 pl-6 opacity-80 dark:border-white/15"
-                            : "font-medium"
-                        }
-                      >
-                        {cell}
-                      </div>
-                    ))}
+                    {h}
                   </div>
                 ))}
               </div>
+              {p.tableRows.map((row, ri) => (
+                <div
+                  key={ri}
+                  className="grid grid-cols-4 gap-6 border-t border-black/5 py-5 text-sm dark:border-white/10"
+                >
+                  {row.map((cell, ci) => (
+                    <div
+                      key={ci}
+                      className={
+                        ci > 0
+                          ? "border-l border-dashed border-black/15 pl-6 opacity-80 dark:border-white/15"
+                          : "font-medium"
+                      }
+                    >
+                      {cell}
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* Exterior photos below the table — one large + two below */}
-          <div className="mt-16 grid grid-cols-2 gap-5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/products/dormitory-building.png"
-              alt={p.dormitoryHeading}
-              className="col-span-2 h-80 w-full rounded-2xl border border-black/5 object-cover dark:border-white/10"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/products/dormitory-night.png"
-              alt={p.dormitoryHeading}
-              className="h-56 w-full rounded-2xl border border-black/5 object-cover dark:border-white/10"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/products/dormitory.png"
-              alt={p.dormitoryHeading}
-              className="h-56 w-full rounded-2xl border border-black/5 object-cover dark:border-white/10"
-            />
+        {/* Vertical cards (left) + spec table (right) */}
+        <div className="mx-auto mt-14 grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-start">
+          {/* Left: the three blocks, stacked vertically */}
+          <div className="flex flex-col gap-6">
+            {p.offerCards.map((card) => (
+              <div
+                key={card.title}
+                className="rounded-2xl border border-black/10 p-7 dark:border-white/15"
+              >
+                <h3 className="text-xl font-bold text-brandtext">
+                  {card.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed opacity-80">
+                  {card.body}
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {card.points.map((pt) => (
+                    <li key={pt} className="flex gap-2 text-sm opacity-80">
+                      <span className="text-brandtext">•</span>
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
           {/* Interior photos + layout */}
-          <div className="mt-16">
+          <div className="mt-16 lg:mt-0">
             <div className="grid gap-5 sm:grid-cols-2">
               <figure>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
