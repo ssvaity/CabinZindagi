@@ -152,15 +152,15 @@ export function ServicesGrid() {
               {p.tableRows.map((row, ri) => (
                 <div
                   key={ri}
-                  className="grid grid-cols-4 gap-6 border-t border-black/5 py-5 text-sm dark:border-white/10"
+                  className="grid grid-cols-4 gap-6 border-t border-black/5 py-5 text-base font-semibold dark:border-white/10"
                 >
                   {row.map((cell, ci) => (
                     <div
                       key={ci}
                       className={
                         ci > 0
-                          ? "border-l border-dashed border-black/15 pl-6 opacity-80 dark:border-white/15"
-                          : "font-medium"
+                          ? "border-l border-dashed border-black/15 pl-6 dark:border-white/15"
+                          : "font-bold"
                       }
                     >
                       {cell}
