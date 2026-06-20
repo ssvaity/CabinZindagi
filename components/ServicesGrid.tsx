@@ -201,13 +201,13 @@ export function ServicesGrid() {
 
           {/* Interior photos + layout */}
           <div className="mt-16 lg:mt-0">
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-5 sm:gap-6">
               <figure>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/products/dormitory-beds.png"
                   alt={p.bedsCaption}
-                  className="h-64 w-full rounded-xl border border-black/5 object-cover dark:border-white/10"
+                  className="h-52 w-full rounded-xl border border-black/5 object-cover dark:border-white/10"
                 />
                 <figcaption className="mt-2 text-center text-sm opacity-60">
                   {p.bedsCaption}
@@ -218,27 +218,24 @@ export function ServicesGrid() {
                 <img
                   src="/products/dormitory-showers.png"
                   alt={p.showerCaption}
-                  className="h-64 w-full rounded-xl border border-black/5 object-cover dark:border-white/10"
+                  className="h-52 w-full rounded-xl border border-black/5 object-cover dark:border-white/10"
                 />
                 <figcaption className="mt-2 text-center text-sm opacity-60">
                   {p.showerCaption}
                 </figcaption>
               </figure>
-            </div>
-
-            <figure className="mt-6">
-              <div className="mx-auto max-w-3xl rounded-2xl border border-black/5 bg-white p-4 dark:border-white/10">
+              <figure className="col-span-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/products/dormitory-floorplan.png"
                   alt={p.layoutCaption}
-                  className="mx-auto max-h-[440px] w-auto object-contain"
+                  className="h-72 w-full rounded-xl border border-black/5 bg-white object-contain p-4 dark:border-white/10"
                 />
-              </div>
-              <figcaption className="mt-3 text-center text-sm opacity-60">
-                {p.layoutCaption}
-              </figcaption>
-            </figure>
+                <figcaption className="mt-2 text-center text-sm opacity-60">
+                  {p.layoutCaption}
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
