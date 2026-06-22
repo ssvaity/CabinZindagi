@@ -40,6 +40,7 @@ export function Navbar() {
     { href: "/impact", label: t.nav.impact },
     { href: "/products", label: t.nav.products },
     { href: "/contact", label: t.nav.contact },
+    { href: "/test", label: "Test" },
   ];
 
   const isActive = (href: string) =>
