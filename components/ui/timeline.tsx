@@ -28,11 +28,15 @@ export const Timeline = ({
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setHeight(el.getBoundingClientRect().height);
+    update();
+    // Re-measure once the cards/fonts settle so the progress line has a height.
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,

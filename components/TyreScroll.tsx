@@ -53,6 +53,20 @@ const OUTCOME_EXTRA = [
   { title: "Policy momentum", text: "Welfare standards moving into boardrooms and policy" },
 ];
 
+// One-off aside shown to the LEFT of the wheel during the "Our Work" stage.
+const PRODUCTS_ASIDE = {
+  eyebrow: "What we build",
+  title: "Rest infrastructure",
+  intro: "Safe places to stop — so drivers sleep, wash and recover before the next leg.",
+  cards: [
+    { title: "Modular dormitories", text: "Stackable 20ft & 40ft portacabins for factories & logistics parks" },
+    { title: "Sleep + sanitation", text: "First-floor sleeping bays over ground-floor showers & toilets" },
+    { title: "Driver essentials", text: "Travel kits and clean-water bottles for life on the road" },
+  ],
+};
+// Matches the "Our Work" slice window so the aside appears only there.
+const PRODUCTS_RANGE: [number, number, number, number] = [0.33, 0.36, 0.45, 0.5];
+
 // One scroll slice [fadeInStart, fullStart, fullEnd, fadeOutEnd] + the side the
 // card sits on + panel width. Cards sit opposite the wheel (rolls left -> right).
 const slices: {
@@ -61,9 +75,9 @@ const slices: {
   maxW: string;
 }[] = [
   { side: "right", range: [0.13, 0.16, 0.26, 0.31], maxW: "max-w-lg" },
-  { side: "right", range: [0.33, 0.36, 0.45, 0.5], maxW: "max-w-lg" },
+  { side: "right", range: [0.33, 0.36, 0.45, 0.5], maxW: "max-w-md" },
   { side: "left", range: [0.52, 0.55, 0.63, 0.68], maxW: "max-w-2xl" },
-  { side: "left", range: [0.7, 0.73, 0.8, 0.84], maxW: "max-w-2xl" },
+  { side: "left", range: [0.7, 0.73, 0.8, 0.84], maxW: "max-w-3xl" },
 ];
 
 function Stage({
@@ -120,6 +134,9 @@ export function TyreScroll() {
 
   // Opening block is full at the very start, then fades as the first entry rolls in.
   const introOpacity = useTransform(scrollYProgress, [0, 0.08, 0.12], [1, 1, 0]);
+  // Products/dorm aside fades in/out with the "Our Work" stage.
+  const productsOpacity = useTransform(scrollYProgress, PRODUCTS_RANGE, [0, 1, 1, 0]);
+  const productsY = useTransform(scrollYProgress, [PRODUCTS_RANGE[0], PRODUCTS_RANGE[1]], [40, 0]);
   // Heading fades out as the CTA takes over.
   const headingOpacity = useTransform(scrollYProgress, [0.8, 0.87], [1, 0]);
   // CTA fades in for the final frame.
@@ -195,6 +212,38 @@ export function TyreScroll() {
             />
           );
         })}
+
+        {/* One-off products/dorm aside, left of the wheel during "Our Work" */}
+        <div className="pointer-events-none absolute inset-y-0 left-4 z-10 flex w-[90%] max-w-sm items-center sm:left-12">
+          <motion.div style={{ opacity: productsOpacity, y: productsY }} className="w-full">
+            <div className="rounded-2xl border border-black/10 bg-[var(--background)]/70 p-7 shadow-xl backdrop-blur-md dark:border-white/15">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brandtext">
+                {PRODUCTS_ASIDE.eyebrow}
+              </p>
+              <h3 className="mt-2 text-xl font-bold tracking-tight">
+                {PRODUCTS_ASIDE.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed opacity-80">
+                {PRODUCTS_ASIDE.intro}
+              </p>
+              <div className="mt-5 space-y-3">
+                {PRODUCTS_ASIDE.cards.map((card) => (
+                  <div
+                    key={card.title}
+                    className="rounded-2xl border border-black/5 bg-black/[0.02] p-4 dark:border-white/10 dark:bg-white/[0.03]"
+                  >
+                    <h4 className="text-sm font-semibold text-brandtext">
+                      {card.title}
+                    </h4>
+                    <p className="mt-1 text-xs leading-snug opacity-70">
+                      {card.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Final frame: CTA fades in behind the parked wheel */}
         <motion.div
