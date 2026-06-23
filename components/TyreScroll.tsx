@@ -2,7 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import {
+  motion,
+  useTransform,
+  useMotionValue,
+  useMotionValueEvent,
+  type MotionValue,
+} from "motion/react";
 import { useLanguage } from "@/lib/language-context";
 import { ImpactEntryContent } from "./ImpactContent";
 import { ImpactCTA } from "./ImpactCTA";
@@ -94,7 +100,7 @@ function Stage({
   side: "left" | "right";
   range: [number, number, number, number];
   maxW: string;
-  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  scrollYProgress: MotionValue<number>;
 }) {
   const [a, b, c, d] = range;
   const opacity = useTransform(scrollYProgress, [a, b, c, d], [0, 1, 1, 0]);
@@ -121,10 +127,29 @@ function TyreScrollDesktop() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const progress = useRef(0);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
+  // Manual scroll progress (0 at section top, 1 at section bottom). framer's
+  // target-based useScroll silently fails to track in production builds, so we
+  // compute it from the section's rect on scroll — reliable everywhere.
+  const scrollYProgress = useMotionValue(0);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const total = el.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(
+        Math.max(-el.getBoundingClientRect().top, 0),
+        total,
+      );
+      scrollYProgress.set(total > 0 ? scrolled / total : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [scrollYProgress]);
 
   // Wheel completes its roll by WHEEL_END, then holds at the right edge.
   const wheelProgress = useTransform(scrollYProgress, [0, WHEEL_END], [0, 1]);
@@ -339,8 +364,9 @@ function TyreScrollMobile() {
 }
 
 export function TyreScroll() {
-  // Default to the mobile layout for SSR; switch to the 3D pinned experience
-  // only on wide screens (where the wheel won't block the content).
+  // Default to the mobile layout for SSR; switch to the 3D pinned experience on
+  // wide screens after mount. (Scroll tracking uses a manual listener, so this
+  // late mount no longer breaks the stage animations.)
   const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");

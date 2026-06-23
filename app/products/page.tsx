@@ -1,5 +1,5 @@
-import { ServicesGrid } from "@/components/ServicesGrid";
+import { ProductCardsDemo } from "@/components/ProductCardsDemo";
 
 export default function ProductsPage() {
-  return <ServicesGrid />;
+  return <ProductCardsDemo />;
 }
