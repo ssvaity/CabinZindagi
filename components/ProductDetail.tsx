@@ -278,7 +278,7 @@ export function ProductDetail({ id }: { id: string }) {
         <div className={heroContain[prod.id] ? "lg:order-first" : ""}>
           {heroImage[prod.id] ? (
             heroContain[prod.id] ? (
-              <div className="flex aspect-square items-center justify-center rounded-3xl border border-black/5 bg-white p-8 dark:border-white/10">
+              <div className="mx-auto flex aspect-square w-full max-w-[15rem] items-center justify-center rounded-3xl border border-black/5 bg-white p-6 dark:border-white/10 lg:max-w-none lg:p-8">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={heroImage[prod.id]}
