@@ -273,9 +273,10 @@ export function ProductDetail({ id }: { id: string }) {
           </div>
         </div>
 
-        {/* Visual — photo if we have one, otherwise an icon panel.
-            Product shots sit on the left; the dormitory photo stays on the right. */}
-        <div className={heroContain[prod.id] ? "lg:order-first" : ""}>
+        {/* Visual — photo if we have one, otherwise an icon panel. Product shots
+            (bottle/kit) sit first: above the text on mobile, left on desktop.
+            The dormitory photo stays after the text / on the right. */}
+        <div className={heroContain[prod.id] ? "order-first" : ""}>
           {heroImage[prod.id] ? (
             heroContain[prod.id] ? (
               <div className="mx-auto flex aspect-square w-full max-w-[15rem] items-center justify-center rounded-3xl border border-black/5 bg-white p-6 dark:border-white/10 lg:max-w-none lg:p-8">
