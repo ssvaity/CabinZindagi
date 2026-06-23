@@ -10,13 +10,13 @@ export function Hero() {
   const brand = locale === "en" ? t.brand.replace(/\s+/g, "") : t.brand;
 
   return (
-    <section className="relative flex min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center overflow-hidden bg-slate-900 px-4">
+    <section className="relative flex min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center overflow-hidden bg-slate-100 px-4 dark:bg-slate-900">
       {/* Radial mask fades the boxes out toward the edges */}
-      <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-slate-900 [mask-image:radial-gradient(transparent,white)]" />
+      <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-slate-100 [mask-image:radial-gradient(transparent,white)] dark:bg-slate-900" />
 
       <Boxes />
 
-      <h1 className="relative z-20 bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-center text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl md:text-8xl">
+      <h1 className="relative z-20 bg-gradient-to-b from-[#1f2a33] to-neutral-600 bg-clip-text text-center text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl md:text-8xl dark:from-white dark:to-neutral-400">
         {brand}
       </h1>
 
@@ -24,7 +24,7 @@ export function Hero() {
         {t.home.tagline}
       </p>
 
-      <p className="relative z-20 mx-auto mt-6 max-w-xl text-center text-neutral-300">
+      <p className="relative z-20 mx-auto mt-6 max-w-xl text-center text-neutral-600 dark:text-neutral-300">
         {t.home.subtitle}
       </p>
 
@@ -37,7 +37,7 @@ export function Hero() {
         </Link>
         <Link
           href="/impact"
-          className="inline-block rounded-full border border-white/20 bg-white/5 px-7 py-3 font-semibold text-white backdrop-blur transition hover:border-accent hover:text-accent"
+          className="inline-block rounded-full border border-black/15 bg-black/5 px-7 py-3 font-semibold text-[#1f2a33] backdrop-blur transition hover:border-accent hover:text-accent dark:border-white/20 dark:bg-white/5 dark:text-white"
         >
           {t.home.ctaSecondary}
         </Link>

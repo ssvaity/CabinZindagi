@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/language-context";
 
 const AMOUNTS = [100, 250, 500, 1000];
 
-export function ImpactCTA() {
+export function ImpactCTA({ compact = false }: { compact?: boolean } = {}) {
   const { t } = useLanguage();
   const c = t.impact.cta;
   const s = t.impact.support;
@@ -20,27 +20,45 @@ export function ImpactCTA() {
   const amountBtn = (active: boolean) =>
     `rounded-lg border px-3 py-3 text-sm font-semibold transition ${
       active
-        ? "border-brand bg-brand/15 text-white"
-        : "border-white/15 text-white/80 hover:border-white/30"
+        ? "border-brand bg-brand/15 text-brandtext dark:text-white"
+        : "border-black/15 text-[#1f2a33]/70 hover:border-black/30 dark:border-white/15 dark:text-white/80 dark:hover:border-white/30"
     }`;
 
   return (
-    <section className="flex min-h-screen items-center bg-[#0b0b12] py-32 text-white sm:py-48">
+    <section
+      className={`flex min-h-screen items-center bg-cream text-[#1f2a33] dark:bg-[#0b0b12] dark:text-white ${
+        compact ? "py-6" : "py-32 sm:py-48"
+      }`}
+    >
       <div className="mx-auto w-full max-w-6xl px-4">
         {/* CTA — headline + actions + testimonial */}
-        <div className="grid gap-12 border-y border-dashed border-white/15 py-14 lg:grid-cols-3 lg:gap-16">
-          <div className="lg:col-span-2 lg:border-r lg:border-dashed lg:border-white/15 lg:pr-12">
-            <h2 className="text-3xl font-medium leading-tight text-neutral-300 sm:text-4xl md:text-5xl">
+        <div
+          className={`grid border-y border-dashed border-black/15 lg:grid-cols-3 dark:border-white/15 ${
+            compact ? "gap-6 py-8 lg:gap-10" : "gap-12 py-14 lg:gap-16"
+          }`}
+        >
+          <div className="lg:col-span-2 lg:border-r lg:border-dashed lg:border-black/15 lg:pr-12 dark:lg:border-white/15">
+            <h2
+              className={`font-medium leading-tight text-neutral-600 dark:text-neutral-300 ${
+                compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl md:text-5xl"
+              }`}
+            >
               {c.headLead}{" "}
-              <span className="font-bold text-white">{c.headStrong}</span>
+              <span className="font-bold text-[#1f2a33] dark:text-white">
+                {c.headStrong}
+              </span>
             </h2>
-            <p className="mt-6 text-2xl leading-snug text-neutral-300 sm:text-3xl">
+            <p
+              className={`leading-snug text-neutral-600 dark:text-neutral-300 ${
+                compact ? "mt-4 text-lg sm:text-xl" : "mt-6 text-2xl sm:text-3xl"
+              }`}
+            >
               {c.subLead} <span className="text-brand">{c.subWord1}</span>{" "}
               {c.subMid} <span className="text-accent">{c.subWord2}</span>{" "}
               {c.subTail}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className={`flex flex-wrap gap-3 ${compact ? "mt-5" : "mt-8"}`}>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 font-semibold text-[#1f2a33] transition hover:bg-brand-light"
@@ -49,7 +67,7 @@ export function ImpactCTA() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-black/15 bg-black/5 px-6 py-3 font-semibold text-[#1f2a33] transition hover:bg-black/10 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 {c.secondary}
                 <span className="material-symbols-outlined text-[18px]">
@@ -60,19 +78,31 @@ export function ImpactCTA() {
           </div>
 
           <div className="lg:pl-2">
-            <p className="text-lg leading-relaxed text-white/80">{c.quote}</p>
+            <p className="text-lg leading-relaxed text-[#1f2a33]/80 dark:text-white/80">
+              {c.quote}
+            </p>
             <p className="mt-6 font-bold">{c.author}</p>
-            <p className="text-sm text-white/50">{c.role}</p>
+            <p className="text-sm text-[#1f2a33]/50 dark:text-white/50">{c.role}</p>
           </div>
         </div>
 
         {/* Contribution module */}
-        <div className="mt-20 rounded-3xl border border-white/10 bg-white/[0.03] p-8 sm:mt-28 sm:p-10">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div
+          className={`rounded-3xl border border-black/10 bg-black/[0.03] dark:border-white/10 dark:bg-white/[0.03] ${
+            compact ? "mt-8 p-6" : "mt-20 p-8 sm:mt-28 sm:p-10"
+          }`}
+        >
+          <div
+            className={`grid lg:grid-cols-2 lg:items-center ${
+              compact ? "gap-6" : "gap-10"
+            }`}
+          >
             <div>
               <h3 className="text-2xl font-bold sm:text-3xl">{s.heading}</h3>
-              <p className="mt-3 text-white/70">{s.sub}</p>
-              <p className="mt-6 text-xs text-white/40">{s.note}</p>
+              <p className="mt-3 text-[#1f2a33]/70 dark:text-white/70">{s.sub}</p>
+              <p className="mt-6 text-xs text-[#1f2a33]/40 dark:text-white/40">
+                {s.note}
+              </p>
             </div>
 
             <div>
@@ -99,7 +129,7 @@ export function ImpactCTA() {
                 value={custom}
                 onChange={(e) => setCustom(e.target.value)}
                 placeholder={s.customPlaceholder}
-                className="mt-3 w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none transition placeholder:text-white/40 focus:border-brand"
+                className="mt-3 w-full rounded-lg border border-black/15 bg-black/5 px-4 py-2.5 text-sm text-[#1f2a33] outline-none transition placeholder:text-[#1f2a33]/40 focus:border-brand dark:border-white/15 dark:bg-white/5 dark:text-white dark:placeholder:text-white/40"
               />
 
               <Link

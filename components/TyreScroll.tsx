@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useLanguage } from "@/lib/language-context";
@@ -53,15 +53,16 @@ const OUTCOME_EXTRA = [
   { title: "Policy momentum", text: "Welfare standards moving into boardrooms and policy" },
 ];
 
-// One-off aside shown to the LEFT of the wheel during the "Our Work" stage.
+// One-off aside shown to the LEFT of the wheel during the "Our Work" stage —
+// framed around how what we build helps the driver, not what we sell.
 const PRODUCTS_ASIDE = {
-  eyebrow: "What we build",
-  title: "Rest infrastructure",
-  intro: "Safe places to stop — so drivers sleep, wash and recover before the next leg.",
+  eyebrow: "What it means for drivers",
+  title: "Rest that restores",
+  intro: "What we build gives drivers back what the road takes away — sleep, hygiene and a moment to recover.",
   cards: [
-    { title: "Modular dormitories", text: "Stackable 20ft & 40ft portacabins for factories & logistics parks" },
-    { title: "Sleep + sanitation", text: "First-floor sleeping bays over ground-floor showers & toilets" },
-    { title: "Driver essentials", text: "Travel kits and clean-water bottles for life on the road" },
+    { title: "A real night's sleep", text: "A clean bed and a quiet bay instead of a cramped cabin, so drivers start the next leg fresh." },
+    { title: "Dignity and hygiene", text: "Showers and toilets let drivers wash up and feel human again before they roll out." },
+    { title: "Healthier on the road", text: "Clean water and travel kits cut fatigue and keep drivers well across long hauls." },
   ],
 };
 // Matches the "Our Work" slice window so the aside appears only there.
@@ -114,7 +115,7 @@ function Stage({
   );
 }
 
-export function TyreScroll() {
+function TyreScrollDesktop() {
   const { t } = useLanguage();
   const impact = t.impact;
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -252,7 +253,7 @@ export function TyreScroll() {
             ctaActive ? "" : "pointer-events-none"
           }`}
         >
-          <ImpactCTA />
+          <ImpactCTA compact />
         </motion.div>
 
         {/* Wheel sits on top (decorative) so it stays visible at the right edge */}
@@ -262,4 +263,95 @@ export function TyreScroll() {
       </div>
     </section>
   );
+}
+
+// Simple card used in the mobile stacked layout.
+function MiniCard({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="rounded-2xl border border-black/5 bg-black/[0.02] p-5 dark:border-white/10 dark:bg-white/[0.03]">
+      <h4 className="text-sm font-semibold text-brandtext">{title}</h4>
+      <p className="mt-1 text-sm leading-snug opacity-70">{text}</p>
+    </div>
+  );
+}
+
+// Mobile / narrow screens: no 3D wheel or pinned scroll — just the content,
+// stacked and fully scrollable, with the CTA as a normal section.
+function TyreScrollMobile() {
+  const { t } = useLanguage();
+  const impact = t.impact;
+
+  return (
+    <>
+      <div className="mx-auto max-w-2xl px-4 pb-16 pt-28">
+        <h1 className="text-3xl font-bold tracking-tight">{impact.heading}</h1>
+        <p className="mt-3 text-sm opacity-60">{impact.subheading}</p>
+
+        {/* Why this matters */}
+        <div className="mt-12">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brandtext">
+            {INVISIBLE_CRISIS.eyebrow}
+          </p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight">
+            {INVISIBLE_CRISIS.heading}
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed opacity-80">
+            {INVISIBLE_CRISIS.intro}
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {INVISIBLE_CRISIS.cards.map((card) => (
+              <MiniCard key={card.title} title={card.title} text={card.text} />
+            ))}
+          </div>
+        </div>
+
+        {/* Impact journey */}
+        <div className="mt-14 space-y-14">
+          {impact.journey.map((entry, i) => {
+            const e = entry as JourneyEntry;
+            const filled =
+              e.variant === "dark"
+                ? { ...e, cards: [...e.cards, ...OUTCOME_EXTRA] }
+                : e;
+            return <ImpactEntryContent key={e.title} entry={filled} index={i} />;
+          })}
+        </div>
+
+        {/* Rest infrastructure aside */}
+        <div className="mt-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brandtext">
+            {PRODUCTS_ASIDE.eyebrow}
+          </p>
+          <h3 className="mt-2 text-xl font-bold tracking-tight">
+            {PRODUCTS_ASIDE.title}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed opacity-80">
+            {PRODUCTS_ASIDE.intro}
+          </p>
+          <div className="mt-5 space-y-3">
+            {PRODUCTS_ASIDE.cards.map((card) => (
+              <MiniCard key={card.title} title={card.title} text={card.text} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <ImpactCTA />
+    </>
+  );
+}
+
+export function TyreScroll() {
+  // Default to the mobile layout for SSR; switch to the 3D pinned experience
+  // only on wide screens (where the wheel won't block the content).
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return isDesktop ? <TyreScrollDesktop /> : <TyreScrollMobile />;
 }

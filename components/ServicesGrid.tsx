@@ -84,6 +84,52 @@ export function ServicesGrid() {
         </div>
       </section>
 
+      {/* What We Offer — heading + spec table (above the dormitory) */}
+      <section className="border-t border-black/5 dark:border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-40 sm:py-56">
+          <h2 className="text-center text-3xl font-bold text-brandtext sm:text-4xl">
+            {p.offerHeading}
+          </h2>
+
+          <div className="mt-14 overflow-x-auto">
+            <div className="min-w-[560px]">
+              <div className="grid grid-cols-4 gap-6 pb-3">
+                {p.tableHeaders.map((h, i) => (
+                  <div
+                    key={h}
+                    className={`text-lg font-bold text-brandtext sm:text-xl ${i > 0
+                      ? "border-l border-dashed border-black/25 pl-6 dark:border-white/25"
+                      : ""
+                      }`}
+                  >
+                    {h}
+                  </div>
+                ))}
+              </div>
+              {p.tableRows.map((row, ri) => (
+                <div
+                  key={ri}
+                  className="grid grid-cols-4 gap-6 border-t border-black/5 py-5 text-base font-semibold dark:border-white/10"
+                >
+                  {row.map((cell, ci) => (
+                    <div
+                      key={ci}
+                      className={
+                        ci > 0
+                          ? "border-l border-dashed border-black/15 pl-6 dark:border-white/15"
+                          : "font-bold"
+                      }
+                    >
+                      {cell}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Section 2 — Driver Dormitory showcase */}
       <section className="border-t border-black/5 dark:border-white/10">
         <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-4 py-40 sm:py-56">
@@ -126,54 +172,10 @@ export function ServicesGrid() {
         </div>
       </section>
 
-      {/* Section 3 — What We Offer (cards + spec table + layout) */}
+      {/* Section 3 — Manufacturing & deployment + interior photos */}
       <section className="border-t border-black/5 dark:border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-40 sm:py-56">
-    <h2 className="text-center text-3xl font-bold text-brandtext sm:text-4xl">
-      {p.offerHeading}
-    </h2>
-
-          {/* Right: spec table */}
-          <div className="mt-14 overflow-x-auto lg:col-span-2">
-            <div className="min-w-[560px]">
-              <div className="grid grid-cols-4 gap-6 pb-3">
-                {p.tableHeaders.map((h, i) => (
-                  <div
-                    key={h}
-                    className={`text-lg font-bold text-brandtext sm:text-xl ${i > 0
-                      ? "border-l border-dashed border-black/25 pl-6 dark:border-white/25"
-                      : ""
-                      }`}
-                  >
-                    {h}
-                  </div>
-                ))}
-              </div>
-              {p.tableRows.map((row, ri) => (
-                <div
-                  key={ri}
-                  className="grid grid-cols-4 gap-6 border-t border-black/5 py-5 text-base font-semibold dark:border-white/10"
-                >
-                  {row.map((cell, ci) => (
-                    <div
-                      key={ci}
-                      className={
-                        ci > 0
-                          ? "border-l border-dashed border-black/15 pl-6 dark:border-white/15"
-                          : "font-bold"
-                      }
-                    >
-                      {cell}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Vertical cards (left) + spec table (right) */}
-        <div className="mx-auto mt-14 grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-start">
+        {/* Vertical cards (left) + interior photos (right) */}
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-40 sm:py-56 lg:grid-cols-2 lg:items-start">
           {/* Left: the three blocks, stacked vertically */}
           <div className="flex flex-col gap-6">
             {p.offerCards.map((card) => (
