@@ -345,26 +345,6 @@ export function ProductDetail({ id }: { id: string }) {
               </div>
             )}
 
-            {/* Driver-facing use case lives on the left to balance the columns */}
-            {details.useCases[0] && (
-              <div className="mt-8">
-                <h4 className="text-sm font-semibold text-brandtext">
-                  {details.useCases[0].heading}
-                </h4>
-                <ul className="mt-2 space-y-1.5">
-                  {details.useCases[0].points.map((pt) => (
-                    <li
-                      key={pt}
-                      className="flex gap-2 text-sm leading-relaxed opacity-80"
-                    >
-                      <span className="text-brandtext">•</span>
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             {details.closing && (
               <p className="mt-auto pt-8 text-sm leading-relaxed opacity-70">
                 {details.closing}
@@ -378,7 +358,7 @@ export function ProductDetail({ id }: { id: string }) {
               {locale === "hi" ? "इस्तेमाल" : "Use cases"}
             </h3>
             <div className="mt-5 space-y-6">
-              {details.useCases.slice(1).map((group) => (
+              {details.useCases.map((group) => (
                 <div key={group.heading}>
                   <h4 className="text-sm font-semibold text-brandtext">
                     {group.heading}
