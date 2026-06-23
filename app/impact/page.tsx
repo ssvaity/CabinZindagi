@@ -1,11 +1,5 @@
-import { ImpactContent } from "@/components/ImpactContent";
-import { ImpactCTA } from "@/components/ImpactCTA";
+import { TyreScroll } from "@/components/TyreScroll";
 
 export default function ImpactPage() {
-  return (
-    <>
-      <ImpactContent />
-      <ImpactCTA />
-    </>
-  );
+  return <TyreScroll />;
 }

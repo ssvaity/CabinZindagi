@@ -120,7 +120,6 @@ function TyreScrollDesktop() {
   const impact = t.impact;
   const sectionRef = useRef<HTMLDivElement>(null);
   const progress = useRef(0);
-  const [ctaActive, setCtaActive] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -140,12 +139,10 @@ function TyreScrollDesktop() {
   const productsY = useTransform(scrollYProgress, [PRODUCTS_RANGE[0], PRODUCTS_RANGE[1]], [40, 0]);
   // Heading fades out as the CTA takes over.
   const headingOpacity = useTransform(scrollYProgress, [0.8, 0.87], [1, 0]);
-  // CTA fades in for the final frame.
+  // CTA fades in for the final frame; it's clickable whenever it's visible
+  // (pointer-events tracks opacity, so selecting amounts always works).
   const ctaOpacity = useTransform(scrollYProgress, [0.85, 0.93], [0, 1]);
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const on = v > 0.87;
-    setCtaActive((prev) => (prev === on ? prev : on));
-  });
+  const ctaPointerEvents = useTransform(ctaOpacity, (o) => (o > 0.6 ? "auto" : "none"));
 
   return (
     <section ref={sectionRef} className="relative h-[400vh]">
@@ -248,16 +245,16 @@ function TyreScrollDesktop() {
 
         {/* Final frame: CTA fades in behind the parked wheel */}
         <motion.div
-          style={{ opacity: ctaOpacity }}
-          className={`absolute inset-0 z-20 ${
-            ctaActive ? "" : "pointer-events-none"
-          }`}
+          style={{ opacity: ctaOpacity, pointerEvents: ctaPointerEvents }}
+          className="absolute inset-0 z-20"
         >
           <ImpactCTA compact />
         </motion.div>
 
-        {/* Wheel sits on top (decorative) so it stays visible at the right edge */}
-        <div className="pointer-events-none absolute inset-0 z-30">
+        {/* Wheel sits on top (decorative) so it stays visible at the right edge.
+            Force the r3f canvas itself to be click-through so it can't block the
+            CTA buttons underneath (the wheel needs no pointer interaction). */}
+        <div className="pointer-events-none absolute inset-0 z-30 [&_*]:!pointer-events-none">
           <TyreCanvas progress={progress} />
         </div>
       </div>
