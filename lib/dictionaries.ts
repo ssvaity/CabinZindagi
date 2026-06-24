@@ -16,13 +16,21 @@ export const dictionaries = {
       sub: "Real conversations, real lives — the stories India's highways carry, told by the drivers who live them.",
       watchAll: "Watch all stories on YouTube",
       featured: "Featured stories",
-      videos: [
-        { title: "Driver Kamla Kant Pandey's story" },
-        { title: "An e-challan in a truck driver's name?" },
-        { title: "6 hours of driving, then water — Rahul's truth" },
+      latest: "Latest uploads",
+      featuredVideos: [
+        { id: "6RSyCKCIqD4", title: "Kamla Kant Pandey — 30 years on the highway" },
+        { id: "XQyG_IbX2MY", title: "An e-challan in a truck driver's name?" },
+        { id: "AtSSZkuxkz0", title: "Rahul's honest truth — life on the highway" },
+      ],
+      latestVideos: [
+        { id: "U4uuYgOfaos", title: "5 must-do checks before every trip" },
+        { id: "_9v25SxvQfk", title: "Rain, fog & rest — what a driver must do" },
+        { id: "zg6_DUi6aVQ", title: "Everyone talks fleet — nobody talks driver" },
       ],
       voicesTitle: "In their words",
       voicesSub: "A few of the things drivers have told us, on the record.",
+      galleryTitle: "Gallery",
+      gallerySub: "Snapshots from the roads and lives of truck drivers.",
       items: [
         {
           name: "Ramesh",
@@ -299,13 +307,21 @@ export const dictionaries = {
       sub: "असली बातचीत, असली ज़िंदगियाँ — भारत के हाईवे जो कहानियाँ संजोते हैं, उन्हीं ड्राइवरों की ज़ुबानी जो उन्हें जीते हैं।",
       watchAll: "यूट्यूब पर सभी कहानियाँ देखें",
       featured: "चुनिंदा कहानियाँ",
-      videos: [
-        { title: "ड्राइवर कमला कांत पांडे की कहानी" },
-        { title: "ट्रक ड्राइवर के नाम e-चालान?" },
-        { title: "6 घंटे ड्राइविंग, फिर पानी — राहुल की सच्ची बात" },
+      latest: "नए वीडियो",
+      featuredVideos: [
+        { id: "6RSyCKCIqD4", title: "कमला कांत पांडे की कहानी — 30 साल हाईवे पर" },
+        { id: "XQyG_IbX2MY", title: "ट्रक ड्राइवर के नाम e-चालान? अभी चेक करो!" },
+        { id: "AtSSZkuxkz0", title: "ट्रक ड्राइवर राहुल की सच्ची बात — हाईवे पर ज़िंदगी" },
+      ],
+      latestVideos: [
+        { id: "U4uuYgOfaos", title: "ट्रिप शुरू करने से पहले 5 ज़रूरी काम" },
+        { id: "_9v25SxvQfk", title: "बारिश, कोहरे में ड्राइवर क्या करे? आराम कितना ज़रूरी है" },
+        { id: "zg6_DUi6aVQ", title: "फ्लीट की बात सब करते हैं, ड्राइवर की कोई नहीं!" },
       ],
       voicesTitle: "उनके अपने शब्दों में",
       voicesSub: "ड्राइवरों ने हमें जो बताया, उसमें से कुछ — रिकॉर्ड पर।",
+      galleryTitle: "गैलरी",
+      gallerySub: "ड्राइवरों की सड़कों और ज़िंदगियों की झलकियाँ।",
       items: [
         {
           name: "रमेश",
