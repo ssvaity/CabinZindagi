@@ -59,10 +59,18 @@ function VideoCard({ id, title }: { id: string; title: string }) {
   );
 }
 
+function formatCount(n: number): string {
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
+  return String(n);
+}
+
 export function Stories({
   latestVideos,
+  subscribers,
 }: {
   latestVideos?: { id: string; title: string }[];
+  subscribers?: number | null;
 }) {
   const { t } = useLanguage();
   const s = t.stories;
@@ -72,16 +80,39 @@ export function Stories({
   return (
     <section className="mx-auto max-w-6xl px-4 py-24 sm:py-28">
       {/* Hero */}
-      <div className="max-w-2xl">
-        <p className="pt-1 text-xs font-semibold uppercase leading-relaxed tracking-[0.28em] text-brandtext">
-          {s.eyebrow}
-        </p>
-        <h1
-          className={`${display.className} mt-3 bg-gradient-to-r from-brand via-brand-light to-accent bg-clip-text py-1 text-4xl font-bold tracking-tight text-transparent sm:text-6xl`}
-        >
-          {s.heading}
-        </h1>
-        <p className="mt-5 text-lg leading-relaxed opacity-75">{s.sub}</p>
+      <div>
+        {/* Eyebrow row — subscriber count sits at the far right */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="pt-1 text-xs font-semibold uppercase leading-relaxed tracking-[0.28em] text-brandtext">
+            {s.eyebrow}
+          </p>
+          {typeof subscribers === "number" && (
+            <a
+              href={YOUTUBE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-black/10 bg-white/[0.03] px-4 py-2 text-sm transition hover:border-brand/40 dark:border-white/10"
+            >
+              <span className="material-symbols-outlined text-[18px] text-red-500">
+                smart_display
+              </span>
+              <span>
+                <span className="text-base font-bold">
+                  {formatCount(subscribers)}
+                </span>{" "}
+                <span className="opacity-70 font-bold italic">Subscribers</span>              </span>
+            </a>
+          )}
+        </div>
+
+        <div className="max-w-2xl">
+          <h1
+            className={`${display.className} mt-3 bg-gradient-to-r from-brand via-brand-light to-accent bg-clip-text py-1 text-4xl font-bold tracking-tight text-transparent sm:text-6xl`}
+          >
+            {s.heading}
+          </h1>
+          <p className="mt-5 text-lg leading-relaxed opacity-75">{s.sub}</p>
+        </div>
       </div>
 
       {/* Featured stories */}

@@ -34,7 +34,30 @@ async function getLatestVideos(): Promise<{ id: string; title: string }[]> {
   }
 }
 
+// Live subscriber count via the YouTube Data API (needs a server-side key).
+// Returns null when the key is missing or the request fails, so the UI can
+// simply hide the count instead of breaking.
+async function getSubscriberCount(): Promise<number | null> {
+  const key = process.env.YOUTUBE_API_KEY;
+  if (!key) return null;
+  try {
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${key}`,
+      { next: { revalidate: 3600 } }, // refresh hourly
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const count = data?.items?.[0]?.statistics?.subscriberCount;
+    return count ? Number(count) : null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function StoriesPage() {
-  const latestVideos = await getLatestVideos();
-  return <Stories latestVideos={latestVideos} />;
+  const [latestVideos, subscribers] = await Promise.all([
+    getLatestVideos(),
+    getSubscriberCount(),
+  ]);
+  return <Stories latestVideos={latestVideos} subscribers={subscribers} />;
 }
