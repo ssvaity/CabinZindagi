@@ -211,7 +211,7 @@ function TyreScrollDesktop() {
         {/* Persistent heading (fades out before the CTA) */}
         <motion.div
           style={{ opacity: headingOpacity }}
-          className="pointer-events-none absolute inset-x-0 top-0 z-20 px-4 pt-24 text-center"
+          className="pointer-events-none absolute inset-x-0 top-0 z-20 px-4 pt-32 text-center"
         >
           <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">
             {impact.heading}
@@ -344,7 +344,7 @@ function TyreScrollMobile() {
 
   return (
     <>
-      <div className="mx-auto max-w-2xl px-4 pb-16 pt-28">
+      <div className="mx-auto max-w-2xl px-4 pb-16 pt-36">
         <h1 className="text-3xl font-bold tracking-tight">{impact.heading}</h1>
         <p className="mt-3 text-sm opacity-60">{impact.subheading}</p>
 
