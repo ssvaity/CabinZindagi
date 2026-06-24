@@ -27,7 +27,7 @@ export function ProductCardsDemo() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
         {products.map((prod) => {
           const isDrivers = prod.audience === "drivers";
           const popular = prod.popular;

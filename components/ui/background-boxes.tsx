@@ -1,11 +1,35 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  const rows = new Array(150).fill(1);
-  const cols = new Array(100).fill(1);
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    // Only render on devices with hover capabilities (pointer: fine) and tablet/desktop width
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const minWidth = window.matchMedia("(min-width: 768px)");
+    
+    const check = () => {
+      setShouldRender(finePointer.matches && minWidth.matches);
+    };
+
+    check();
+    finePointer.addEventListener("change", check);
+    minWidth.addEventListener("change", check);
+
+    return () => {
+      finePointer.removeEventListener("change", check);
+      minWidth.removeEventListener("change", check);
+    };
+  }, []);
+
+  if (!shouldRender) return null;
+
+  // Optimized grid size to cover the scaled/skewed viewport area without inflating DOM footprint
+  const rows = new Array(80).fill(1);
+  const cols = new Array(60).fill(1);
   let colors = [
     "#FE680F", // brand orange
     "#FE8A1C", // amber
