@@ -6,8 +6,49 @@ export const dictionaries = {
     nav: {
       home: "Home",
       impact: "Impact",
+      stories: "Stories",
       products: "Products & Services",
       contact: "Contact",
+    },
+    stories: {
+      eyebrow: "Voices from the highway",
+      heading: "Straight from the Cabin",
+      sub: "Real conversations, real lives — the stories India's highways carry, told by the drivers who live them.",
+      watchAll: "Watch all stories on YouTube",
+      featured: "Featured stories",
+      videos: [
+        { title: "Driver Kamla Kant Pandey's story" },
+        { title: "An e-challan in a truck driver's name?" },
+        { title: "6 hours of driving, then water — Rahul's truth" },
+      ],
+      voicesTitle: "In their words",
+      voicesSub: "A few of the things drivers have told us, on the record.",
+      items: [
+        {
+          name: "Ramesh",
+          route: "Delhi – Mumbai corridor",
+          quote:
+            "Eight months a year I'm on the road. A clean bottle and a place to sleep — small things, but they remind me someone sees us.",
+        },
+        {
+          name: "Satvinder",
+          route: "Punjab – Gujarat",
+          quote:
+            "Nobody asks the driver how he's doing. The day someone filmed my story, my children finally understood my work.",
+        },
+        {
+          name: "Abdul",
+          route: "Chennai – Hyderabad",
+          quote:
+            "A clean wash and a safe park after a 14-hour shift changes everything for the next day's drive.",
+        },
+        {
+          name: "Mahesh",
+          route: "Kolkata – Ranchi",
+          quote:
+            "We move the country's goods, yet we stay invisible. Being heard is the first step to being helped.",
+        },
+      ],
     },
     home: {
       tagline: "The Human Side of Logistics",
@@ -248,8 +289,49 @@ export const dictionaries = {
     nav: {
       home: "होम",
       impact: "प्रभाव",
+      stories: "कहानियाँ",
       products: "उत्पाद और सेवाएँ",
       contact: "संपर्क",
+    },
+    stories: {
+      eyebrow: "हाईवे की आवाज़ें",
+      heading: "सीधे केबिन से",
+      sub: "असली बातचीत, असली ज़िंदगियाँ — भारत के हाईवे जो कहानियाँ संजोते हैं, उन्हीं ड्राइवरों की ज़ुबानी जो उन्हें जीते हैं।",
+      watchAll: "यूट्यूब पर सभी कहानियाँ देखें",
+      featured: "चुनिंदा कहानियाँ",
+      videos: [
+        { title: "ड्राइवर कमला कांत पांडे की कहानी" },
+        { title: "ट्रक ड्राइवर के नाम e-चालान?" },
+        { title: "6 घंटे ड्राइविंग, फिर पानी — राहुल की सच्ची बात" },
+      ],
+      voicesTitle: "उनके अपने शब्दों में",
+      voicesSub: "ड्राइवरों ने हमें जो बताया, उसमें से कुछ — रिकॉर्ड पर।",
+      items: [
+        {
+          name: "रमेश",
+          route: "दिल्ली – मुंबई कॉरिडोर",
+          quote:
+            "साल में आठ महीने मैं सड़क पर रहता हूँ। एक साफ़ बोतल और सोने की जगह — छोटी चीज़ें, पर याद दिलाती हैं कि कोई हमें देखता है।",
+        },
+        {
+          name: "सतविंदर",
+          route: "पंजाब – गुजरात",
+          quote:
+            "कोई ड्राइवर से नहीं पूछता कि वह कैसा है। जिस दिन किसी ने मेरी कहानी फिल्माई, मेरे बच्चे आख़िरकार मेरे काम को समझे।",
+        },
+        {
+          name: "अब्दुल",
+          route: "चेन्नई – हैदराबाद",
+          quote:
+            "14 घंटे की शिफ्ट के बाद साफ़ नहाना और सुरक्षित पार्किंग अगले दिन की ड्राइव बदल देती है।",
+        },
+        {
+          name: "महेश",
+          route: "कोलकाता – रांची",
+          quote:
+            "हम देश का सामान ढोते हैं, फिर भी हम अनदेखे रहते हैं। सुना जाना मदद पाने का पहला कदम है।",
+        },
+      ],
     },
     home: {
       tagline: "लॉजिस्टिक्स का मानवीय पक्ष",

@@ -16,7 +16,7 @@ export function Hero() {
 
       <Boxes />
 
-      <h1 className="relative z-20 bg-gradient-to-b from-[#1f2a33] to-neutral-600 bg-clip-text text-center text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl md:text-8xl dark:from-white dark:to-neutral-400">
+      <h1 className="relative z-20 py-2 bg-gradient-to-b from-[#1f2a33] to-neutral-600 bg-clip-text text-center text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl md:text-8xl dark:from-white dark:to-neutral-400">
         {brand}
       </h1>
 

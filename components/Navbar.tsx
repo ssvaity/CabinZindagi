@@ -24,6 +24,7 @@ export function Navbar() {
   const links = [
     { href: "/", label: t.nav.home },
     { href: "/impact", label: t.nav.impact },
+    { href: "/stories", label: t.nav.stories },
     { href: "/products", label: t.nav.products },
     { href: "/contact", label: t.nav.contact },
   ];
