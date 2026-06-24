@@ -39,7 +39,7 @@ function VideoCard({ id, title }: { id: string; title: string }) {
         </span>
       </div>
       <div className="p-5">
-        <h3 className="font-semibold leading-snug">{title}</h3>
+        <h3 className="line-clamp-2 font-semibold leading-snug">{title}</h3>
         <p className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brandtext">
           Watch on YouTube
           <span aria-hidden className="transition group-hover:translate-x-0.5">
@@ -51,9 +51,15 @@ function VideoCard({ id, title }: { id: string; title: string }) {
   );
 }
 
-export function Stories() {
+export function Stories({
+  latestVideos,
+}: {
+  latestVideos?: { id: string; title: string }[];
+}) {
   const { t } = useLanguage();
   const s = t.stories;
+  // Use the live channel feed when available; otherwise the curated fallback.
+  const latest = latestVideos?.length ? latestVideos : s.latestVideos;
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-24 sm:py-28">
@@ -85,7 +91,7 @@ export function Stories() {
         {s.latest}
       </p>
       <div className="mt-5 grid gap-6 md:grid-cols-3">
-        {s.latestVideos.map((v) => (
+        {latest.map((v) => (
           <VideoCard key={v.id} id={v.id} title={v.title} />
         ))}
       </div>
