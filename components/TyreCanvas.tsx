@@ -6,7 +6,7 @@ import { useGLTF, Center } from "@react-three/drei";
 import * as THREE from "three";
 import type { Group } from "three";
 
-const MODEL = "/models/wheel2.glb";
+const MODEL = "/models/wheel3.glb";
 
 // Largest dimension of the tyre, in world units, after normalising.
 const TYRE_SIZE = 1.77;

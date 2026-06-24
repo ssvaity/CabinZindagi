@@ -86,7 +86,9 @@ export function ImpactCTA({ compact = false }: { compact?: boolean } = {}) {
           </div>
         </div>
 
-        {/* Contribution module */}
+        {/* Contribution / payment module — temporarily disabled.
+            Set `false` to `true` (or unwrap) to bring it back. */}
+        {false && (
         <div
           className={`rounded-3xl border border-black/10 bg-black/[0.03] dark:border-white/10 dark:bg-white/[0.03] ${
             compact ? "mt-8 p-6" : "mt-20 p-8 sm:mt-28 sm:p-10"
@@ -141,6 +143,7 @@ export function ImpactCTA({ compact = false }: { compact?: boolean } = {}) {
             </div>
           </div>
         </div>
+        )}
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ export function Contact() {
   const { t } = useLanguage();
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-20">
+    <section className="mx-auto max-w-6xl px-4 pt-32 pb-20 sm:pt-40">
       <div className="grid items-start gap-12 lg:grid-cols-2">
         {/* Left — info + world map */}
         <div>

@@ -8,6 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Large display sizes default to line-height 1, which clips Devanagari's
+      // stacked top marks (and the gradient bg-clip-text headings then drop
+      // them entirely). Give the big sizes a script-safe line-height.
+      fontSize: {
+        "4xl": ["2.25rem", { lineHeight: "1.25" }],
+        "5xl": ["3rem", { lineHeight: "1.25" }],
+        "6xl": ["3.75rem", { lineHeight: "1.2" }],
+        "7xl": ["4.5rem", { lineHeight: "1.2" }],
+        "8xl": ["6rem", { lineHeight: "1.15" }],
+      },
       colors: {
         // Lead accent — the "Zindagi" orange from the logo
         brand: {

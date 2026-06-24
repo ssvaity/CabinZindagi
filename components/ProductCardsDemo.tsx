@@ -16,7 +16,7 @@ export function ProductCardsDemo() {
   const p = t.products;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-24 sm:py-32">
+    <section className="mx-auto max-w-6xl px-4 pt-32 pb-24 sm:pt-40 sm:pb-32">
       {/* Production product-page header */}
       <div className="text-center">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -27,7 +27,7 @@ export function ProductCardsDemo() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
         {products.map((prod) => {
           const isDrivers = prod.audience === "drivers";
           const popular = prod.popular;
