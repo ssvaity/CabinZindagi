@@ -5,10 +5,18 @@ import { display } from "@/lib/fonts";
 
 const YOUTUBE = "https://www.youtube.com/@cabinzindagi";
 
-// Gallery images — add entries here later (drop files in /public/gallery first):
-//   { src: "/gallery/driver-1.jpg", alt: "On the highway" },
-// Until then, placeholder tiles are shown.
-const GALLERY: { src: string; alt: string }[] = [];
+// Gallery images (files live in /public/gallery). Add or remove freely;
+// placeholder tiles show automatically if this list is empty.
+const GALLERY: { src: string; alt: string }[] = [
+  { src: "/gallery/n5.jpg", alt: "On site with drivers in Mumbai" },
+  { src: "/gallery/n7.jpg", alt: "Inside the cabin with a driver" },
+  { src: "/gallery/n8.jpg", alt: "Inside a decorated truck cabin" },
+  { src: "/gallery/n1.jpg", alt: "With drivers at the truck yard" },
+  { src: "/gallery/n2.jpg", alt: "With drivers beside their trucks" },
+  { src: "/gallery/n3.jpg", alt: "In the cabin with a driver" },
+  { src: "/gallery/n9.jpg", alt: "On the highway with a driver" },
+  { src: "/gallery/n4.jpg", alt: "Meeting drivers at night" },
+];
 
 function VideoCard({ id, title }: { id: string; title: string }) {
   return (
