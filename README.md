@@ -21,7 +21,7 @@ Built with care (and a fair amount of caffeine ☕) using **Next.js 15 · React 
 
 | | Page | What's inside |
 |---|------|----------------|
-| 🏠 | **Home** (`/`) | Interactive boxes hero, "What We Do" spotlight cards, the *"Agar Chakkaa…"* quote band, and a Before/After outcome section |
+| 🏠 | **Home** (`/`) | A scroll-scrubbed video hero that reveals the story beat-by-beat — brand → *What We Do* → the three pillars → the *"Agar Chakkaa…"* quote — flowing into a Before/After outcome and an Impact CTA |
 | 💛 | **Impact** (`/impact`) | A scroll-animated timeline, a CTA banner, and a one-time contribution module |
 | 📦 | **Products** (`/products`) | Pricing-style cards (Water Bottle, Driver Travel Kit, Modular Dormitory) + a dormitory image showcase |
 | ✉️ | **Contact** (`/contact`) | Two-column layout with a world map and an EmailJS-powered form |
@@ -34,6 +34,32 @@ Built with care (and a fair amount of caffeine ☕) using **Next.js 15 · React 
 - 🇬🇧 ⇄ 🇮🇳 **English ⇄ Hindi** — one toggle flips the *entire* site's language. Every word lives in `lib/dictionaries.ts`.
 - 📬 **Contact form** — sends email via **EmailJS**, no backend required. Logs to console until you add keys.
 - 🪄 **Interactive effects** — `SplashCursor` (desktop + non-reduced-motion only), Aceternity boxes & timeline, spotlight cards.
+- 🎞️ **Scroll-scrubbed hero** — a pinned video whose playback is driven by your scroll while the story reveals beat-by-beat (brand → pillars → quote).
+- 📺 **Live subscriber count** — the Stories page pulls the YouTube channel's subscriber count via the YouTube Data API (server-side, hourly cached).
+
+---
+
+## 🎬 The Scroll Hero
+
+The headline experience. The `ScrollVideo` component pins a video to the screen and
+**scrubs its playback from scroll position** (no autoplay) while the copy — brand →
+tagline → *What We Do* → the three pillars → the closing quote — reveals beat-by-beat,
+then hands off to the Outcome and an Impact CTA.
+
+Knobs (props on `<ScrollVideo />`):
+
+| Prop | Does |
+|------|------|
+| `src` | Which clip to scrub |
+| `reveal` | Text entrance: `fade` · `blur` · `wipe` · `fadeup` · `mask` |
+| `brandColor` | `logo` (orange/green) or `theme` (black ↔ white) |
+| `inset` | Full-bleed vs. a rounded, contained card |
+
+Plus `SectionSnap` (scroll-snaps each beat into view so nothing gets skipped) and
+`ImpactTransition` (the closing "move India" CTA into `/impact`). 🛣️
+
+> 🎥 Hero clips live in `public/`. For buttery scrubbing, re-encode with dense
+> keyframes: `ffmpeg -i in.mp4 -an -g 6 -crf 20 out.mp4`.
 
 ---
 
@@ -64,6 +90,9 @@ The form works out of the box in dev (it just logs to the browser console 🪵).
    ```
 3. Restart `npm run dev`. 🔄
 
+> 📺 **Optional:** add a server-side `YOUTUBE_API_KEY` to `.env.local` to show the
+> live subscriber count on the Stories page. Without it, the page just skips the count.
+
 ---
 
 ## 🧭 Where to Edit Things
@@ -78,6 +107,9 @@ Lost? Here's your map. 🗺️
 | 🎨 Brand colors (orange / green) | `tailwind.config.ts` (`colors.brand`, `accent`) |
 | 🔤 Display font | `lib/fonts.ts` |
 | 🧩 Home page sections / order | `app/page.tsx` |
+| 🎬 Scroll-hero video + reveals | `components/ScrollVideo.tsx` |
+| 🧲 Scroll-snap behavior | `components/SectionSnap.tsx` |
+| 🛣️ Impact transition CTA | `components/ImpactTransition.tsx` |
 
 ---
 
