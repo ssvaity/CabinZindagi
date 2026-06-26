@@ -20,7 +20,7 @@ export function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-black/5 dark:border-white/10">
+    <footer className="snap-end border-t border-black/5 dark:border-white/10">
       <div className="mx-auto max-w-6xl px-4 py-16">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           {/* Brand */}
