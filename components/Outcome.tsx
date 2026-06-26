@@ -8,7 +8,7 @@ export function Outcome() {
   const o = t.home.outcome;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-24">
+    <section className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-4 py-24">
       {/* Label + heading */}
       <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-50">
         {o.label}
