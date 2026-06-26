@@ -27,8 +27,6 @@ export function Navbar() {
     { href: "/stories", label: t.nav.stories },
     { href: "/products", label: t.nav.products },
     { href: "/contact", label: t.nav.contact },
-    { href: "/test", label: "Test" },
-    { href: "/test2", label: "Test2" },
   ];
 
   const isActive = (href: string) =>

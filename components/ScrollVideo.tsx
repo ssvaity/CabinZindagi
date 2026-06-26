@@ -218,7 +218,7 @@ function Beat({
       style={{ opacity, y, visibility }}
       className="pointer-events-none absolute inset-0 flex items-center justify-center px-6"
     >
-      <div className="w-full max-w-2xl text-center text-black dark:text-white">
+      <div className="w-full max-w-2xl text-center text-white">
         <BeatContext.Provider value={{ reveal, active }}>
           {children}
         </BeatContext.Provider>
@@ -376,7 +376,7 @@ export function ScrollVideo({
 
         {/* Scrim for legibility — light wash in light mode (black text), dark wash
             in dark mode (white text). */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/45 via-white/25 to-white/50 dark:from-black/60 dark:via-black/35 dark:to-black/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/60" />
 
         {/* Loading hint until metadata is ready */}
         {!ready && (
@@ -393,7 +393,7 @@ export function ScrollVideo({
             className="mx-auto max-w-5xl text-center text-5xl font-extrabold tracking-tight drop-shadow-lg sm:text-7xl md:text-8xl"
           >
             {brandColor === "theme" ? (
-              <span className="text-black dark:text-white">
+              <span className="text-white">
                 {brandFirst}
                 {locale === "en" ? "" : " "}
                 {brandRest}
@@ -413,12 +413,12 @@ export function ScrollVideo({
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
           <motion.div
             style={{ opacity: introOpacity, y: introY, visibility: introVisibility }}
-            className="mx-auto w-full max-w-2xl text-center text-black dark:text-white"
+            className="mx-auto w-full max-w-2xl text-center text-white"
           >
             <p className="text-base font-bold uppercase tracking-[0.2em] text-brand-light/90 sm:text-xl">
               {home.tagline}
             </p>
-            <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-relaxed text-black/80 dark:text-white/90 sm:text-2xl">
+            <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-relaxed text-white/90 sm:text-2xl">
               {home.subtitle}
             </p>
           </motion.div>
